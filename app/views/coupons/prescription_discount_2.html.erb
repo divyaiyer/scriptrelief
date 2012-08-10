@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+<%= stylesheet_link_tag "new_prescription.css", :media => "all" %>
+<%= javascript_include_tag "js/jquery_1_4.js" %>
+<link rel="icon" href="/favicon.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+</head>
+<body>
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+    <!--
+    Start of DoubleClick Floodlight Tag: Please do not remove
+    Activity name of this tag: HelpRx Print Coupon (Standard)
+    URL of the webpage where the tag is expected to be placed: http://www.helprx.info/PRESCRIPTION_DISCOUNT
+    This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+    Creation Date: 04/09/2012
+    -->
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+  <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: HelpRx Print Coupon_(Unique)
+URL of the webpage where the tag is expected to be placed: http://www.helprx.info/printable_discount
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+Creation Date: 04/25/2012
+-->
+<script type="text/javascript">
+var axel = Math.random() + "";
+var a = axel * 10000000000000;
+document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+  <div class="pre_new_outer">
+    <%= image_tag "/assets/new_printable/new-pharmacy-top1.png"%>
+    <div class="pre_new_outer_inner1">
+      <div class="pre_new_outer_top">
+        <div class="up_to">
+          Up To
+        </div>
+        <div class="pre_new_discount">
+          <%=@discount%> OFF
+        </div>
+        <div class="pre_new_your_next" style="width:585px">
+          Your Next Prescription For:
+        </div>
+        <div  class="pre_new_medicine">
+          <%=@medicine[0..18]%>
+        </div>
+      </div>
+      <div class="pre_new_api_resp">
+        <img src="/assets/new_printable/new-pharmacy-box.png" style="z-index: 3; position: relative; height: 226px; margin-left: 82px;"/>
+        <div style=" z-index: 4; position: absolute; margin-top: -212px;">
+        <table cellpadding="2" cellspacing="2">
+          <tr>
+            <td class="label">BIN</td>
+            <td><%=@api_response.blank? ? $BIN : @api_response["BIN"]%></td>
+          </tr>
+          <tr>
+            <td class="label">GRP</td>
+            <td><%=@api_response.blank? ? nil : @api_response["GroupNumber"]%></td>
+          </tr>
+          <tr>
+            <td class="label">PCN</td>
+            <td><%=@api_response.blank? ? $PCN : @api_response["PCN"].upcase%></td>
+          </tr>
+          <tr>
+            <td class="label">UID</td>
+            <td><%=@api_response.blank? ? ("HNA"+@usernumber.id.to_s.rjust(6,"0")) : @api_response["MemberNumber"] %></td>
+          </tr>
+        </table>
+        </div>
+      </div>
+    </div>
+    <%= image_tag "/assets/new_printable/new-pharmacy-middle.png" %>
+    <div class="pre_new_outer_inner2">
+      <div class="pre_new_outer_inner2_top">
+        <span class="pre_new_outer_inner2_span">How To Use This Discount</span>
+        <br/>
+        <span class="pre_new_outer_inner2_span1"> 1. Take this discount to the pharmacy.</span><br/>
+        <span class="pre_new_outer_inner2_span1">2. Give your discount to the pharmacist.</span><br/>
+        <span class="pre_new_outer_inner2_span1"> 3. Save up to 75% on prescriptions!</span>
+      </div>
+      <div class="pre_new_outer_inner2_present">
+        Present this at the time of purchase. This coupon does not work in conjunctions with other prescription discounts. This discount is offered through the Healthcare Alliance and does not imply the endorsement of the pharmacutical manufacturer. This discount is not insurance.
+        <br/><br/>
+        Questions <%=$HELPLINE_NO%>
+      </div>
+    </div>
+    <div class="pre_new_outer_inner3">
+      Good At Virtually Every Pharmacy In The United States
+    </div>
+    <%= image_tag "/assets/new_printable/new-pharmacy-btm3.png" %>
+    <%= image_tag "/assets/new_printable/new-pharmacy-btm4.png",:style=>"margin-top: 5px;" %>
+    <div class="cut_here">Cut here</div>
+    <%= image_tag "/assets/new_printable/new-pharmacy-btn.png",:style=>"margin-left: 100px; margin-top: 15px;",:onclick=>"window.print();" %>
+    <!-- END of HTML BASED COUPON-->
+    <br/><br/>
+    <div class="footer">
+      © 2012
+    </div><br/><br/>
+    <div class="footer">
+      The information on this site does not constitute medical advice and is not intended to be a substitute for proper medical care provided by a physician. This program is not insurance.
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var browserName=navigator.appName;
+        if (browserName=="Microsoft Internet Explorer"){
+          var timeout = 1500;
+        }
+        else{
+          var timeout = 2500;
+        }
+        if (/Firefox/i.test(navigator.userAgent)){
+          window.print();
+          window.onafterprint = function (){
+            setTimeout("location.href = '/helprx-sign-up?m=<%=@medicine.parameterize%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          }
+        }
+        else{
+          setTimeout("location.href = '/helprx-sign-up?m=<%=@medicine.parameterize%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          window.print();
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,7 @@
+<div style="width:25%;float: right;">
+  <% if request.path.include?("/esp") %>
+    <%= will_paginate @coupons,:params => {:scope => "esp"},:link_separator => "|", :page_links => false  if @coupons%>
+  <% else %>
+    <%= will_paginate @coupons,:link_separator => "|", :page_links => false  if @coupons%>
+  <% end %>
+</div>

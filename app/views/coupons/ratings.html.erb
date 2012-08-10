@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag "rating_star.css","jquery.rating.css"%>
+<%= javascript_include_tag "js/jquery_1_4.js","js/jquery-ui-1.8.1.custom.min.js","jquery.rating.js","jquery.rating.pack.js"%>
+<body style="background-color: #8dacd8;padding-left:15px;">
+  <div style="padding-top: 30px;text-align: right;">
+    <%= image_tag "/assets/fulfillment/logo.png" %>
+  </div>
+<div id="rate_site" style="height: 292px; margin-left: -23px; width: 610px; background-color: white;">
+<form id="star_form" action="/coupons/ratings" method="post">
+  <table style="padding-top:17px; padding-left: 38px;">
+    <tr>
+      <td style="font-size:20px">
+        How was your HelpRx experience?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="star" type="radio" name="rating_sites[rate]" value="1"/>
+        <input class="star" type="radio" name="rating_sites[rate]" value="2"/>
+        <input class="star" type="radio" name="rating_sites[rate]" value="3"/>
+        <input class="star" type="radio" name="rating_sites[rate]" value="4"/>
+        <input class="star" type="radio" name="rating_sites[rate]" value="5"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Name(Optional) :
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%=text_field 'rating_sites','name',:value=>session[:ratings_name]%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Write a Review :
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <% text =  params[:rating_sites]&& params[:rating_sites][:review] ? params[:rating_sites][:review] : "" %>
+        <%=text_area_tag 'rating_sites[review]', "#{text}", :rows => 4, :cols => 41 ,:class=>"textbox"%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="" id="submit_star"/>
+        <span style="color:red;font-weight: bold">
+          <%= @err_msg if @err_msg %>
+        </span>
+      </td>
+    </tr>
+  </table>
+</form>
+</div>
+
+</body>
+
+<script>
+  $(function(){
+    $('#star_form :radio.star').rating();
+    <% if !@message.blank? %>
+      parent.$.colorbox.close();
+    <% end %>
+  });
+</script>

@@ -1,0 +1,169 @@
+<%= javascript_include_tag "js/jquery_1_4.js" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+<link rel="icon" href="/assets/viewer.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+<style>
+.left_align{
+  text-align: left
+}
+.title{
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.sub_title{
+  font-family: arial;
+  font-weight: bold;
+  font-size: 11px;
+}
+#fulfill_content{
+  margin-left: -24px; background-color: white; width: 107%; height: 550px; margin-top: 3px;
+}
+.border_none{
+  border: 0;
+}
+</style>
+</head>
+<body style="background-color: #8dacd8;padding-left:15px;">
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+  <div style="padding-top: 30px;text-align: right;">
+    <%= image_tag "/assets/fulfillment/logo.png" %>
+  </div>
+  <div id="fulfill_content">
+    <div style="font-weight:bold;padding-top: 50px;font-family: arial;font-size: 28px;text-align: center;">
+      How would you like your coupon?
+    </div>
+    <div style="padding-top: 50px;width:66%;float: left">
+    <table width="266" style="padding-left: 19px;">
+      <tr>
+        <td>
+          <table cellpadding="0" cellspacing="0" width="266">
+            <tr><td><img src="/assets/coupon_images/newdiscount_01.gif" width="266" height="100" alt=""/></td></tr>
+            <tr>
+              <td align="left" valign="top" style="padding-left:17px">
+                <table cellpadding="0" cellspacing="0" style="border-left: 1px dashed;width: 248px;border-right:1px dashed">
+                  <tr>
+                    <td align="left" colspan="3" style="padding-left:15px;color: #2E7DBB;font-weight: bold">TAKE <br>UP TO</td>
+                  </tr>
+                  <tr>
+                    <td valign="top" align="center"><span style="font-family:Arial, sans-serif; font-weight:bold; font-size: 35px; color: #3f7226"><%=@discount%></span> off</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" align="center" style="padding-left:6px;color: #2E7DBB;font-size: 13px;font-weight: bold;font-family: sans-serif;">YOUR NEXT PRESCRIPTION FOR</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center">
+                <div style="margin-left: 17px;margin-right: 53px;border-left: 1px dashed;border-right: 1px dashed;width: 246px;">
+                  <span style="font-family:Verdana, Geneva, sans-serif; font-weight:bold; font-size: 17px;"><%=@medicine[0..18]%></span>
+                </div>                
+              </td>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <div style="border-left: 1px dashed; float: left; border-right: 1px dashed; width: 246px; margin-left: 17px;">
+                  <img width="100px" height="70px" style="z-index: 3; margin-top: 10px; margin-left: -242px;" src="/assets/coupon_images/print_coupon_base.jpg" alt="Print_coupon_base"></img>
+                  <div style="position: absolute; z-index: 4; float: left;  margin-left: 45px; margin-top: -53px;">
+                    <table cellpadding="1" cellspacing="0" width="68">
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:8px;font-weight:bold;"><%=@api_response.blank? ? $BIN : @api_response["BIN"]%></span></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:8px;font-weight:bold;"><%=@api_response.blank? ? nil : @api_response["GroupNumber"]%></span></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:8px;font-weight:bold;"><%=@api_response.blank? ? $PCN : @api_response["PCN"].upcase%></span></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:8px;font-weight:bold;"><%=@api_response["MemberNumber"] %></span></td>
+                        </tr>
+                      </tbody></table>
+                  </div>
+                    <div style="float:left;margin-left: 110px;margin-top: 10px;width: 137px">
+                      <table cellpadding="0" cellspacing="0" style="100%">
+                                  <tr><td width="100px" style="font-family:Arial, Helvetica, sans-serif;font-size:7px;">PRESENT THIS AT TIME OF PURCHASE</td></tr>
+                                  <tr rowspan="4"><td height="5"></td></tr>
+                                </table>
+                    </div>
+                </div>  
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="padding-left:3px;font-family:Arial, Helvetica, sans-serif;font-size:9px;margin-left: 17px;width: 243px;border-left: 1px dashed;border-right: 1px dashed;border-bottom: 1px dashed;">
+
+                </div>
+              </td>
+            </tr>            
+          </table>
+        </td>
+      </tr>      
+    </table>
+    </div>
+    <div style="width:33%;float: left;margin-top: 50px">
+      <table>
+        <tr>
+          <td>
+            <%= link_to image_tag("/assets/fulfillment/PRINT_Button.png", :class=>"border_none"), "#",:onclick=>"parent.$.colorbox.close();newWindow = window.open('#{print_coupon_printable_discount_path(@coupon)}','couponPrint','height=900, width=710,menubar=no,scrollbars=no,top=100'); newWindow.focus();" %>
+            <br/><span class="sub_title">Print coupons at home</span>
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td>
+            <%= link_to image_tag("/assets/fulfillment/SMS_Button.png", :class=>"border_none"), sms_coupon_printable_discount_path(@coupon), :class=>"fancybox" %>
+            <br/><span class="sub_title">Send coupons to your phone</span>
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td>
+            <%= link_to image_tag("/assets/fulfillment/EMAIL_Button.png", :class=>"border_none"), email_coupon_printable_discount_path(@coupon), :class=>"fancybox" %>
+            <br/><span class="sub_title">Receive coupons by email</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+  <script type="text/javascript">
+	        $(document).ready(function() {
+                   if (!$.fn.colorbox) return;
+                      $(".fancybox").colorbox({
+                      "iframe": true,
+                      "fastIframe": false,
+                      "innerWidth": 510,
+                      "innerHeight": 694,
+                      "opacity": 0.8,
+                      "scrolling": false,
+                      "onComplete": function() {
+                        var iframe = $("iframe.cboxIframe"),
+                        body = iframe.contents().find("body"),
+                        floatStyle = body.css("float");
+                        body.css("float", "left");
+                        $.colorbox.resize({ "innerHeight": iframe.contents().height() })
+                        body.css("float", floatStyle);
+                       }
+                      });
+                });
+
+
+ </script>
+</html>

@@ -1,0 +1,239 @@
+<html>
+    <head>
+        <title>helprx.info</title>
+        <%= stylesheet_link_tag    "style", :media => "all" %>
+        <%= stylesheet_link_tag    "css/smoothness/jquery-ui-1.8.1.custom.css","css/jquery.autocomplete.css","css/validationEngine.jquery.css", :media => "all" %>
+        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "js/jquery.validationEngine-en.js", "js/jquery.validationEngine.js"%>
+                <%= csrf_meta_tags %>
+        <link rel="icon" href="/favicon.ico" />
+        <%= render :partial => 'layouts/google_analytics'%>
+        <!--[if IE 6]>
+           <script type="text/javascript" src="/assets/ie6png/ie6pngfix.js"></script>
+            <script type="text/javascript">
+              DD_belatedPNG.fix('img, ul, ol, li, div, p, a, h1, h2, h3, h4, h5, h6, span, input, textarea, td');
+      </script>
+   <![endif]-->
+    </head>
+    <body style="background:none;">
+    <script src="//cdn.optimizely.com/js/31931623.js"></script>
+    <div class="mboxDefault"></div>
+    <script type="text/javascript"> mboxCreate('helprx_global_top_<%=$ttenv%>'); </script>
+
+       <!--
+    Start of DoubleClick Floodlight Tag: Please do not remove
+    Activity name of this tag: HelpRx Discounts Search Page
+    URL of the webpage where the tag is expected to be placed: http://www.helprx.info/discounts
+    This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+    Creation Date: 04/05/2012
+    -->
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=landi745;cat=helpr576;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=landi745;cat=helpr576;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+    <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+<style>
+  .ui-autocomplete{
+    width: 220px;
+    border: 1px solid #999999;
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: default;
+    margin: -6px 6px 6px -6px;
+    max-height: 350px;
+    overflow: auto;
+    text-align: left;
+    border-radius: 0px;
+}
+.pagination a{
+  font-size: 11px;
+  color: blue;
+  font-weight: bold;
+  padding: 3px 3px 3px 3px;
+}
+.pagination span{
+  font-size: 11px;
+  color: blue;
+  font-weight: bold;
+  padding: 3px 3px 3px 3px;
+}
+.current{
+  font-weight: bold;
+  font-size: 11px;
+  color: blue;
+  font-style: normal;
+}
+.alpha_bar a{
+  padding: 1px -1px 1px -1px;
+}
+a:hover{
+  text-decoration: none;
+}
+</style>
+<script>
+$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		_renderMenu: function( ul, items ) {
+			var self = this,
+				currentCategory = "";
+			$.each( items, function( index, item ) {
+                                var reEscape = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') + ')', 'g');
+                                var pattern = '(' + (self.term).replace(reEscape, '\\$1') + ')';
+                                var result = item.label.replace(new RegExp(pattern, 'gi'), "<strong style='color:#3399FF;'>$1<\/strong>");                                
+				if ( item.category != currentCategory ) {
+					ul.append( "<li class='ui-autocomplete-category' style='font-weight:bold;font-family:Din,Verdana,Geneva,sans-serif; background: none repeat scroll 0 0 white !important;color: black;font-size: 140%;padding: 5px 5px 2px;'>" + item.category + ':' + "</li>" );
+					currentCategory = item.category;
+				}
+                                return $( "<li style='font-family:Din,Verdana,Geneva,sans-serif'></li>" )
+                                      .data( "item.autocomplete", item )
+                                      .append( "<a>" + result + "</a>" )
+                                      .appendTo( ul );
+			});
+		}
+	});
+
+  $(function(){
+  var reEscape = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') + ')', 'g');
+  var a = jQuery('#discount_sphinx').catcomplete({
+      source: "/discounts/search"
+    , minChars:1
+    , delimiter: /(,|;)\s*/ // regex or character
+    , maxHeight:400
+    , width:450
+    , zIndex: 9999
+    , deferRequestBy: 0
+    });
+
+});
+
+
+</script>
+<style>
+.autocomplete-w1 { position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div {
+  white-space:nowrap;
+}
+.autocomplete strong { font-weight:normal; color:#3399FF; }
+.autocomplete .value {
+  padding:2px 5px;
+}
+.autocomplete .group {
+  background: white !important;
+  color: black;
+  font-size: 140%;
+  padding:5px 5px 2px 5px;
+}
+</style>
+<style>
+div.null_thanks_form {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("/assets/null_form_graphic.jpg");
+    background-position: 95% 10%;
+    background-repeat: no-repeat;
+    height: 700px;
+    padding-bottom: 7px;
+    padding-left: 0;
+    padding-right: 19px;
+    padding-top: 8px;
+}
+.clearingfix{
+  width: 674px;
+}
+a:hover{
+  text-decoration: none;
+}
+</style>
+    <!--[if IE]>
+      <style>
+        .search_discount_spanish{
+          padding-top: 10px;
+        }
+      </style>
+    <![endif]-->
+<script>
+		 jQuery(document).ready(function() {
+				jQuery("#thank_you_form").validationEngine({scroll:false,inlineValidation:false});                                
+			});
+
+		</script>
+<script type="text/javascript">
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+var utm_campaign = gup ('utm_campaign');
+if ((utm_campaign != "GLY")&&(utm_campaign != "GAV")&&(utm_campaign != "GHQ")){
+var ctt_kw = gup( 'ctt_kw' );
+      if (ctt_kw !=""){
+        document.write("<center><span class=\"bingSearch\"> Click Here For Savings On <a href=\"http://www.helprx.info/discounts?search="+ctt_kw+"\">" + unescape(ctt_kw) + "</a></span></center>");
+      }
+var kw = gup( 'kw' );
+       if (kw !=""){
+         document.write("<center><span class=\"bingSearch\"> Click Here For Savings On <a href=\"http://www.helprx.info/discounts?search="+kw+"\">" +unescape(kw) + "</a></span></center>");
+      }
+}
+   </script>
+
+<div class="clearingfix">
+      <!-- search discount -->
+      <div class="search_discount_spanish">
+        <h2>¿Usas medicamentos recetados? ¡Busque su descuento!</h2>
+        <span class="prescription" style="font-size: 13px;padding: 24px 0 18px 1px;">Utiliza el buscador de medicamentos recetados para ver cuánto puedes ahorrar</span>
+         <form action="/esp/tools/discounts"  method="post" name ="search_form"  id="search_form">
+          <ul>
+            <li>
+            	<input name="search" type="text" id="discount_sphinx" class="input_item" />
+            </li>
+            <li><input type="submit" value="" class="submit" id="discount_search_submit"/></li>
+          </ul>
+        </form>
+        <!--[if IE 6]>
+          <div style="clear:both"></div>
+        <![endif]-->
+          <div class="alpha_bar" style="margin-top: 10px;">
+                <% ('A'..'Z').each do |e| %>
+                  <%= link_to "#{e}", "/esp/tools/discounts?search=" + e +"&"+"alphabet_search=true", :class=>"coupon_print"%> <%= e == 'Z' ? "" : "|"%>
+                <% end %>
+          </div>
+      </div>
+      <!-- / search discount -->
+
+
+      <% if !@suggest.blank? %>
+        <div style="padding:0 20px">
+          <b>Did you mean:</b>
+		  <a href="?discount_search=<%= @suggest %>" style="font-size: 150%;">
+           <%= @suggest %>
+          </a>
+        </div>
+      <% end %>
+      <div id="coupons_ajax_list">
+        <%= render :partial =>"iframe_spanish_coupons" , :locals => {:coupons => @coupons,:search => @search.to_s}  %>
+      </div>
+    </div>
+
+<% if @printRetargetPixels == 1 %>
+<iframe id='pm_tracker_11110222398' name='pm_tracker_11110222398' src='http://t1.tentaculos.net/iframe/11110222398/_PM_STATUS,0/cb,313433' framespacing='0' frameborder='no' scrolling='no' width='0' height='0'><div id='pm_tracker_i_11110222398' style='position: absolute; left: 0px; top: 0px; visibility: hidden;'><img src='http://t1.tentaculos.net/image/11110222398/_PM_STATUS,0/cb,313433' width='0' height='0' alt='' /></div></iframe>
+
+<!-- Segment Pixel - KeyReactions - retargeting - DO NOT MODIFY -->
+<script src="http://ads.exactdrive.com/seg?add=202280&t=1" type="text/javascript"></script><!-- End of Segment Pixel -->
+
+<% end %>
+</body>
+</html>

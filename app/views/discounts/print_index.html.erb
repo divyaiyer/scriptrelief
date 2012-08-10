@@ -1,0 +1,220 @@
+<%= javascript_include_tag "jquery.colorbox.js"%>
+<% content_for :flood_tag do%>
+       <!--
+    Start of DoubleClick Floodlight Tag: Please do not remove
+    Activity name of this tag: HelpRx Discounts Search Page
+    URL of the webpage where the tag is expected to be placed: http://www.helprx.info/discounts
+    This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+    Creation Date: 04/05/2012
+    -->
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=landi745;cat=helpr576;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=landi745;cat=helpr576;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+    <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+<% end %>
+ <script>
+   $(document).ready(function() {
+     $("div.pagination1 a").addClass("coupon_print");
+   });
+</script>
+<style>
+  .ui-autocomplete{
+    width: 220px;
+    border: 1px solid #999999;
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: default;
+    margin: -6px 6px 6px -6px;
+    max-height: 350px;
+    overflow: auto;
+    text-align: left;
+    border-radius: 0px;
+}
+.pagination a{
+  font-size: 11px;
+  color: blue;
+  font-weight: bold;
+  padding: 3px 3px 3px 3px;
+}
+.pagination span{
+  font-size: 11px;
+  color: blue;
+  font-weight: bold;
+  padding: 3px 3px 3px 3px;
+}
+.current{
+  font-weight: bold;
+  font-size: 11px;
+  color: blue;
+  font-style: normal;
+}
+.alpha_bar a{
+  padding: 1px -1px 1px -1px;
+}
+</style>
+<script>
+$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		_renderMenu: function( ul, items ) {
+			var self = this,
+				currentCategory = "";
+			$.each( items, function( index, item ) {
+                                var reEscape = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') + ')', 'g');
+                                var pattern = '(' + (self.term).replace(reEscape, '\\$1') + ')';
+                                var result = item.label.replace(new RegExp(pattern, 'gi'), "<strong style='color:#3399FF;'>$1<\/strong>");                                
+				if ( item.category != currentCategory ) {
+					ul.append( "<li class='ui-autocomplete-category' style='font-weight:bold;font-family:Din,Verdana,Geneva,sans-serif; background: none repeat scroll 0 0 white !important;color: black;font-size: 140%;padding: 5px 5px 2px;'>" + item.category + ':' + "</li>" );
+					currentCategory = item.category;
+				}
+                                return $( "<li style='font-family:Din,Verdana,Geneva,sans-serif'></li>" )
+                                      .data( "item.autocomplete", item )
+                                      .append( "<a>" + result + "</a>" )
+                                      .appendTo( ul );
+			});
+		}
+	});
+
+  $(function(){
+  var reEscape = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') + ')', 'g');
+  var a = jQuery('#discount_sphinx').catcomplete({
+      source: "/discounts/search"
+    , minChars:1
+    , delimiter: /(,|;)\s*/ // regex or character
+    , maxHeight:400
+    , width:450
+    , zIndex: 9999
+    , deferRequestBy: 0
+    });
+
+});
+
+
+</script>
+<style>
+.autocomplete-w1 { position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div {
+  white-space:nowrap;
+}
+.autocomplete strong { font-weight:normal; color:#3399FF; }
+.autocomplete .value {
+  padding:2px 5px;
+}
+.autocomplete .group {
+  background: white !important;
+  color: black;
+  font-size: 140%;
+  padding:5px 5px 2px 5px;
+}
+</style>
+<style>
+div.null_thanks_form {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../assets/null_form_graphic.jpg");
+    background-position: 97% 10%;
+    background-repeat: no-repeat;
+    height: 700px;
+    padding-bottom: 7px;
+    padding-left: 0;
+    padding-right: 19px;
+    padding-top: 8px;
+}
+</style>
+<script>
+		 jQuery(document).ready(function() {
+				jQuery("#thank_you_form").validationEngine({scroll:false,inlineValidation:false});
+			});
+
+		</script>
+  <!-- main body -->
+    <!-- right column -->
+    <!-- / right column -->
+
+    <!-- content column -->
+    <div id="main" class="clearingfix">
+
+      <!-- save money -->
+      <div class="save_money" style="padding:0px 5px 0 27px;">
+        <span class="new_discounts">Print Coupons</span>
+
+<script type="text/javascript">
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+var utm_campaign = gup ('utm_campaign');
+if ((utm_campaign != "GLY")&&(utm_campaign != "GAV")&&(utm_campaign != "GHQ")){
+var ctt_kw = gup( 'ctt_kw' );
+      if (ctt_kw !=""){
+        document.write("<center><span class=\"bingSearch\"> Click Here For Savings On <a href=\"http://www.helprx.info/print/discounts?search="+ctt_kw+"\">" + unescape(ctt_kw) + "</a></span></center>");
+      }
+var kw = gup( 'kw' );
+       if (kw !=""){
+         document.write("<center><span class=\"bingSearch\"> Click Here For Savings On <a href=\"http://www.helprx.info/print/discounts?search="+kw+"\">" +unescape(kw) + "</a></span></center>");
+      }
+}
+   </script>
+
+        <!--
+        <h1>Save Money Instantly</h1>
+        <p>Prescription drugs cost too much, don't you agree? The thing is, there are discounts out there if you know how to get them. We've partnered with a major pharmacy benefits company to provide those discounts to you. Just click on a discount, print the page, and bring it to your local pharmacy - the pharmacist will know what to do. This discount is offered through the Pharmacy Discount Network and does not imply the endorsement of the pharmaceutical manufacturer.</p>
+        <p>Browse our <strong>top discounts</strong> by letter, or search our database of over 15,000 discounts.</p>
+        -->
+      </div>
+      <!-- / save money -->
+
+      <!-- search discount -->
+      <div class="search_discount">
+        <h2>Taking a prescription? Search for your discount!</h2>
+        <span class="prescription">Enter the name of the prescription drug you'd like to save on</span>
+        <form action="/print/discounts"  method="post" name ="search_form"  id="search_form">
+          <ul>
+            <li>
+            	<input name="search" type="text" id="discount_sphinx" class="input_item" />
+            </li>
+            <li><input type="submit" value="" class="submit" id="discount_search_submit"/></li>
+          </ul>
+        </form>
+        <!--[if IE 6]>
+          <div style="clear:both"></div>
+        <![endif]-->
+          <div class="alpha_bar" style="margin-top: 10px;">
+            <% ('A'..'Z').each do |e| %>
+              <%= link_to "#{e}", "/print/discounts?search=" + e +"&"+"alphabet_search=true", :class=>"coupon_print"%> <%= e == 'Z' ? "" : "|"%>
+            <% end %>
+          </div>
+      </div>
+      <!-- / search discount -->
+
+
+      <% if !@suggest.blank? %>
+        <div style="padding:0 20px">
+          <b>Did you mean:</b>
+		  <a href="?discount_search=<%= @suggest %>" style="font-size: 150%" class="coupon_print">
+           <%= @suggest %>
+          </a>
+        </div>
+      <% end %>
+       <div id="coupons_ajax_list">
+        <%= render :partial =>"print_coupons" , :locals => {:coupons => @coupons,:search => @search.to_s}  %>
+       </div>
+      <!-- / thank_you -->
+      <!--<div class="print"><a href=""><img src="images/print_img.png" alt="images" /></a></div>-->
+
+    </div>

@@ -1,0 +1,62 @@
+<h4 class="admin_header">Coupons</h4>
+<style> 
+  .pagination{
+    text-align: center
+}
+</style>
+<div style="margin-right:100px">
+  <table align="right">
+    <tr>
+      <td><%= link_to 'New Coupon', new_coupon_path, :class=>"new_coupon_button", :style=>"text-decoration: none;"%></td>
+      <form action="/admin/coupons/search" method='post'>
+      <td>
+         <input name="search" type="text" />
+      </td>
+      <td>
+        <input type="submit" value="Search" />
+      </td>
+      </form>
+    </tr>
+  </table>
+</div>
+  <br/>
+  <div>
+<%= form_tag(coupons_path,:method=>:get, :name=>'coupons_frm') do |f| -%>
+<table align="center" class="admin_tables" style=" margin-top: 20px;">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Savings</th>
+    <th>Ailment</th>
+    <th>Top Coupon</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td>
+    <td>
+       <% @search ? @top_coupon = @search[:top_coupon] : @top_coupon = "" -%>      
+      <%= select_tag('search[top_coupon]', options_for_select([["All",""], ["True", "1"],["False", "0"]],@top_coupon), :onchange => "this.form.submit();") %>
+    </td>
+    <td colspan="2"></td>
+  </tr>
+  </thead>
+
+<% @coupons.each do |coupon| %>
+  <tr>
+    <td><%=h coupon.name %></td>
+    <td><%=h coupon.savings %></td>
+    <td><%=h coupon.ailment %></td>
+    <td><%=h coupon.top_coupon %></td>
+    <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
+    <td><%= link_to 'Destroy', coupon, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+  </div>
+<% end %>
+
+<br />
+
+<%= will_paginate @coupons%>
+
+

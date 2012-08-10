@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+<%= stylesheet_link_tag "new_prescription_print.css", :media => "all" %>
+<%= javascript_include_tag "js/jquery_1_4.js" %>
+<link rel="icon" href="/favicon.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+</head>
+<body style="background:none">
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+    <!--
+    Start of DoubleClick Floodlight Tag: Please do not remove
+    Activity name of this tag: HelpRx Print Coupon (Standard)
+    URL of the webpage where the tag is expected to be placed: http://www.helprx.info/PRESCRIPTION_DISCOUNT
+    This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+    Creation Date: 04/09/2012
+    -->
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+  <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: HelpRx Print Coupon_(Unique)
+URL of the webpage where the tag is expected to be placed: http://www.helprx.info/printable_discount
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+Creation Date: 04/25/2012
+-->
+<script type="text/javascript">
+var axel = Math.random() + "";
+var a = axel * 10000000000000;
+document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+  <div class="outer_div_top">
+    <img src="/assets/scissor.png" style="position: absolute; z-index: 3; width: 900px;height: 400px"/>
+    <div>
+    <div style="float: left; width: 15%; margin-left: 28px; margin-top: 53px;"><%= image_tag "/assets/helprx-logo.png"%></div>
+    <div style="padding-top: 26px; float: left; width: 708px; height: 220px;padding-left: 30px">
+    <div style="margin-left: 10px; width: 250px; color: white; font-weight: bold; font-family: arial; font-size: 14px; text-align: center; height: 22px; margin-top: -5px;">
+        <%= image_tag "/assets/valid_print.png"%>
+    </div>
+    <div class="outer_div_top2" style="margin-top:40px">Prescription Savings Voucher</div>
+      <div class="outer_div_top1_left" style="background-color:white">
+        <div style="width:auto  ">Up to</div>
+        <div style="margin-top: 4px; font-size: 34px; font-weight: normal;"><%=@discount%> OFF</div>
+      </div>
+    <div style="height: auto; float: left; margin-top: 38px; text-align: justify; width: 680px;">
+      <div class="outer_div_top3" style="width:637px;">
+        Pharmacist Instructions: This voucher is pre-activated and entities the holder to all prescription drug benefits associated with the BIN, GRP and PCN codes( as per state and federal law). If you need help processing a prescription, call the RxRelief Pharmacist Help Line toll-free at <%=$HELPLINE_NO%>
+      </div>
+      <hr style="margin-left: 10px; margin-top: 67px; width: 637px;"/><hr style="margin-left: 10px; margin-top: -12px;width: 637px;"/>
+      <div class="outer_div_top4" style="width:637px;margin-top: 11px">
+        Accepted by all major retail chains, plus thousands of independent pharmacies. This voucher is PRE-ACTIVATED and you cannot be turned down for any pre-existing conditions. This is not insurance and does not work in conjunction with other prescription discounts.
+      </div>
+    </div>
+     <div class="med_name_1">
+      <%=@medicine[0..27]%>
+    </div>
+    </div>
+  </div>
+    <div class="outer_div_top5">
+      <table>
+        <tr>
+          <td class="label">BIN</td>
+          <td><%=@api_response.blank? ? $BIN : @api_response["BIN"]%></td>
+        </tr>
+         <tr>
+          <td class="label">GRP</td>
+          <td><%=@api_response.blank? ? nil : @api_response["GroupNumber"]%></td>
+        </tr>
+         <tr>
+          <td class="label">PCN</td>
+          <td><%=@api_response.blank? ? $PCN : @api_response["PCN"].upcase%></td>
+        </tr>
+         <tr>
+          <td class="label">UID</td>
+          <td><%=@api_response.blank? ? ("HNA"+@usernumber.id.to_s.rjust(6,"0")) : @api_response["MemberNumber"] %></td>
+        </tr>
+      </table>
+    </div>  
+    </div>
+  <div class="outer_div_bottom">
+    Take this coupon to your pharmacy and save today!
+  </div>
+<!-- END of HTML BASED COUPON-->
+</body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        var browserName=navigator.appName;
+        if (browserName=="Microsoft Internet Explorer"){
+          var timeout = 1500;
+        }
+        else{
+          var timeout = 2500;
+        }
+        if (/Firefox/i.test(navigator.userAgent)){
+          window.print();
+          window.onafterprint = function (){
+            setTimeout("location.href = '/helprx-sign-up?m=<%=@medicine.parameterize%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          }
+        }
+        else{
+          setTimeout("location.href = '/helprx-sign-up?m=<%=@medicine.parameterize%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          window.print();
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,32 @@
+<h4 class="admin_header">New Coupon</h4>
+
+<%= form_for(@coupon) do |f| %>
+
+<table align="center" class="coupons_table" cellpadding="7" cellspacing="7">
+  <tr>
+    <td><%= f.label :name %>:</td>
+    <td><%= f.text_field :name%></td>
+  </tr>
+  <tr>
+    <td><%= f.label :savings %>:</td>
+    <td><%= f.text_field :savings%></td>
+  </tr>
+  <tr>
+    <td><%= f.label :ailment %>:</td>
+    <td><%= f.text_field :ailment%></td>
+  </tr>
+  <tr>
+    <td><%= f.label :top_coupon  %>:</td>
+    <td>  Yes: <%= f.radio_button :top_coupon, true %>
+    No: <%= f.radio_button :top_coupon, false %></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align: right">
+     <%= f.submit 'Update', :class=>"form_buttons",:style=>"text-decoration:none" %>
+      <%= link_to 'Cancel', coupons_path, :class=>"form_buttons",:style=>"text-decoration:none;padding:6px"  %>
+    </td>
+  </tr>
+</table> 
+  
+<% end %>
+

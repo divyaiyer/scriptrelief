@@ -1,0 +1,111 @@
+<%= stylesheet_link_tag "colorbox.css" , :media=> "screen" %>
+<%= javascript_include_tag "jquery.colorbox.js" , "js/jquery-ui-1.8.1.custom.min.js"  %>
+<style>
+  .align_center{
+    text-align: center;
+}
+a:hover{
+  text-decoration: none;
+}
+</style>
+<img id="displayBox" src="/assets/loading.gif" style="display:none" />
+<% if !@coupons.blank? %>
+   <%= render :partial => "pagination", :locals => {:coupons => @coupons,:search => @search.to_s} %>
+  <div class="coupon_list">
+        <!-- coupon -->
+        <% if !@coupons.blank? %>
+          <% @coupons.each do |coupon| %>
+            <a href="javascript:void(0)" onclick = "window.open('<%=coupon_printable_discount_path(coupon)%>','couponPrint','height=900, width=710,menubar=no,scrollbars=no');"  style="cursor:pointer">
+              <div class="coupon">
+                <span class="title">Save up to  <%= coupon.savings %></span> ON YOUR NEXT<br /> PRESCRIPTION OF <span class="color" title="<%=coupon.name%>"><%= coupon.name[0..16] %></span>
+                <div class="link">
+                  <%= image_tag "/assets/print_discount.png",:style=>"margin-left:130px" %>
+                </div>
+                <span class="discount_label"><%= coupon.savings %></span>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+   <div style="clear:both"></div>
+   <%= render :partial => "pagination", :locals => {:coupons => @coupons,:search => @search.to_s} %>
+<% else %>
+      <!-- thnk_you -->
+      <div class="thanks">
+        <h2>We can't seem to locate the prescription name you've enter above.
+            For more savings, please enter your name and address to receive a free pharmacy discount card.</h2>        
+        <div class="null_thanks_form">
+          <div class="submit_box">
+            <form action="/transferred_data" method="post" id="thank_you_form">
+              <ul>
+                <li><label>Name*</label> <input name="transferred_datum[firstname]" id="name" type="text" value="" class="validate[required]" /></li>
+                <li><label>Address1*</label><input name="transferred_datum[address1]" id="address1" type="text" value="" class="validate[required]" /></li>
+                <li><label>Address2</label> <input name="transferred_datum[address2]" id="address2" type="text" value="" /></li>
+                <li><label>City*</label><input name="transferred_datum[city]" id="city" type="text" value="" class="validate[required]" /></li>
+                <li>
+                  <label>State*</label>
+                  <select name="transferred_datum[state]" id="state" style="width:210px;" class="validate[required]">
+                    <option value="">Please select a state</option>
+                      <% $states.each do |k,v| %>
+                        <option value="<%=k%>"><%=v%></option>
+                      <% end %>
+                  </select>
+                </li>
+                <li><label>Zip code*</label><input name="transferred_datum[zip]" id="zip_code" type="text" value="" class="validate[required]" /></li>
+                <li>
+                  <label>E-mail*</label> <input name="transferred_datum[email]" id="e-mail" type="text" value="" class="validate[required]" />
+                  <input type="hidden" name="transferred_datum[groupno]" value="<%=$GRP%>" />
+                  <input type="hidden" name="transferred_datum[remote_ip]" value="<%=request.env['REMOTE_ADDR']%>" />
+                  <input type="hidden" name="transferred_datum[path]" value="<%=request.url%>" />
+                  <input type="hidden" name="transferred_datum[url]" value="<%=request.referer%>" />
+      	          <input type="hidden" name="transferred_datum[current_prescription]" value="<%=@search if @search%>" />
+      		</li>
+                <li><input name="thanks" type="submit" value="" class="submit" /></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+<% end %>
+<script type="text/javascript">
+   $(document).ready(function() {
+        if (!$.fn.colorbox) return;
+        $(".fancybox").colorbox({
+          "iframe": true,
+          "fastIframe": false,
+          "innerWidth": 510,
+          "innerHeight": 674,
+          "opacity": 0.8,
+          "scrolling": false,
+          "onComplete": function() {
+            var iframe = $("iframe.cboxIframe"),
+            body = iframe.contents().find("body"),
+            floatStyle = body.css("float");
+            body.css("float", "left");
+            body.css("float", floatStyle);
+          }
+        });
+  });
+  
+  $(document).ready(function() {    
+      ajaxifyPagination();
+  });
+
+  function ajaxifyPagination() {
+      $(".pagination a").click(function() {
+          obj = $(this).html();
+          $.ajax({
+            type: "GET",
+            url: $(this).attr("href"),
+            data: {search :"<%= @search if @search %>"},
+            dataType: "script",
+            
+            success: function(data){
+              
+               $("#coupons_ajax_list").html(data);
+            }
+          });
+          return false;
+      });
+  }
+</script>

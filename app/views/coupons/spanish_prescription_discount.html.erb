@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+  <%= javascript_include_tag "js/jquery_1_4.js" %>
+<link rel="icon" href="/favicon.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+</head>
+<body class='discount' id="discount_body">
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+    <!--
+    Start of DoubleClick Floodlight Tag: Please do not remove
+    Activity name of this tag: HelpRx Print Coupon (Standard)
+    URL of the webpage where the tag is expected to be placed: http://www.helprx.info/PRESCRIPTION_DISCOUNT
+    This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+    Creation Date: 04/09/2012
+    -->
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr065;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+  <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: HelpRx Print Coupon_(Unique)
+URL of the webpage where the tag is expected to be placed: http://www.helprx.info/printable_discount
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+Creation Date: 04/25/2012
+-->
+<script type="text/javascript">
+var axel = Math.random() + "";
+var a = axel * 10000000000000;
+document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=coupo174;cat=helpr340;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+<table cellpadding="0" cellspacing="0" width="456">
+  <tr>
+   <td align="left" valign="top" style="padding-top:15px;padding-left:20px;">
+            <%= image_tag("/assets/coupon_images/top_back.png",:style=>" margin-left: -10px;position: absolute; z-index: 3;") %>
+     <div style=" position: absolute; z-index: 4;padding-left:10px;padding-top:166px">
+       <table cellpadding="0" cellspacing="0" width="456">
+
+   <tr>
+
+		<td colspan="3" rowspan="2">&nbsp;</td>
+
+		<td colspan="3" width="178" height="98" align="center"><span style="font-family:Arial, sans-serif; font-weight:bold; font-size: 80px; line-height:80px; color: #3f7226"><%=@discount%></td>
+
+		<td colspan="3" rowspan="2">&nbsp;</td>
+
+	</tr>
+
+	<tr>
+		<td colspan="3">&nbsp;</td>
+
+	</tr>
+
+  </table>
+     </div>
+   </td>
+  </tr>
+ <tr>
+
+  <td align="left" valign="top">
+
+   <table cellpadding="0" cellspacing="0" width="100%">
+
+    <tr>
+
+     <td width="35" style="padding-top:320px;padding-left:12px;"><img src="/assets/coupon_images/newdiscount_06.gif" alt="" /></td>
+
+     <td align="left" valign="top">
+
+      <table cellpadding="0" cellspacing="0" width="412">
+
+      <tr><td height="20" colspan="3"></td></tr>
+
+       <tr><td align="center" colspan="3" style="padding-top:306px"><span style="font-family:Verdana, Geneva, sans-serif; font-weight:bold; font-size: 32px; line-height:32px"><%=@medicine[0..18]%></span></td></tr>
+
+       <tr><td height="5" colspan="3"></td></tr>
+
+       <tr>
+
+        <td align="left" valign="top">
+
+         <table cellpadding="0" cellspacing="0" width="100%">
+
+          <tr>
+
+           <td align="left" valign="top" style="padding-left:20px;">
+            <%= image_tag("/assets/coupon_images/print_coupon_base.jpg",:style=>" margin-left: -10px;position: absolute; z-index: 3;") %>
+             <div style=" position: absolute; z-index: 4;padding-left:60px;padding-top:26px">
+               <table cellpadding="1" cellspacing="0" width="168">
+
+             <tbody>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? $BIN : @api_response["BIN"]%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? nil : @api_response["GroupNumber"]%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? $PCN : @api_response["PCN"].upcase%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? ("HNA"+@usernumber.id.to_s.rjust(6,"0")) : @api_response["MemberNumber"] %></span></td>
+             </tr>
+
+            </tbody></table>
+             </div>
+            
+
+           </td>
+
+          </tr>
+
+         </table>
+
+        </td>
+
+        <td width="10"></td>
+
+        <td valign="top" style="padding-left:170px">
+
+         <table cellpadding="0" cellspacing="0" width="100%">
+
+          <tr><td style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">PRESENTE ESTE CUPÓN AL FINALIZAR SU COMPRA.</td></tr>
+
+          <tr><td height="5"></td></tr>
+
+          <tr><td align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">ESTE DESCUENTO NO FUNCIONA EN CONJUNCIÓN CON OTROS DESCUENTOS DE MEDICAMENTOS RECETADOS.</td></tr>
+
+          <tr><td height="5"></td></tr>
+
+          <tr><td style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">PREGUNTAS : <%=$PHONE_NO%><br /> ESTE DESCUENTO NO ES SEGURO MÉDICO.</td></tr>
+
+         </table>
+
+        </td>
+
+       </tr>
+
+       <tr>
+
+        <td colspan="3" style="padding-top:30px;padding-left:3px;font-family:Arial, Helvetica, sans-serif;font-size:9px;" valign="top" align="left">
+
+         <div style="width:371px;text-align:left;">
+
+		Este descuento es ofrecido a través de Healthcare Alliance y no implica el respaldo del fabricante farmacéutico.
+
+
+         </div>
+
+        </td>
+
+       </tr>
+
+       <tr><td colspan="3" align="center" style="padding-top:27px" ><img src="/assets/coupon_images/print_coupon_base.png" alt="" /></td></tr>
+
+      </table>
+
+     </td>
+
+     <td width="10" style="padding-top:320px"><img src="/assets/coupon_images/newdiscount_08.gif" alt="" /></td>
+
+    </tr>
+
+   </table>
+
+  </td>
+
+ </tr>
+	<tr>
+		<td colspan="3" style="padding-left:150px;">
+            <a href="/helprx-sign-up?m=<%=@medicine%>&u=<%=@usernumber.id if !@usernumber.blank?%>" onClick='window.print();return'><img src="/assets/coupon_images/newdiscount_18.gif" width="168" height="48" alt=""/></a>
+		</td>
+	</tr>
+</table>
+<!-- END of HTML BASED COUPON-->
+  <%= render :partial => '/layouts/footer_spanish' , :locals => {:layout => nil}%>
+</body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        var browserName=navigator.appName;
+        if (browserName=="Microsoft Internet Explorer"){
+          var timeout = 1500;
+        }
+        else{
+          var timeout = 2500;
+        }
+        
+        if (/Firefox/i.test(navigator.userAgent)){
+          window.print();
+          window.onafterprint = function (){
+            setTimeout("location.href = '/esp/helprx-sign-up?m=<%=@medicine%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          }
+        }
+        else{
+          setTimeout("location.href = '/esp/helprx-sign-up?m=<%=@medicine%>&u=<%=@usernumber.id if !@usernumber.blank?%>';", timeout);
+          window.print();
+        }
+
+    });
+</script>
+</html>

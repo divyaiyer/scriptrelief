@@ -1,0 +1,24 @@
+<table align="center" class="admin_tables" cellpadding="2" cellspecing="2">
+    <th>Id</th>
+    <th>Name</th>
+    <th>Savings</th>
+    <th>Ailment</th>
+    <th>Top Coupon</th>
+    <tr>
+      <td><%=h @coupon.id %></td>
+
+      <td><%=h @coupon.name %></td>
+    
+      <td><%=h @coupon.savings %></td>
+    
+      <td><%=h @coupon.ailment %></td>
+    
+      <td><%=h @coupon.top_coupon %></td>
+    </tr>
+    <br/>
+</table>
+
+<div align="center" style="margin-top:10px;">
+<%= link_to 'Edit', edit_coupon_path(@coupon), :class=>"form_buttons",:style=>"text-decoration:none;padding:5px" %> |
+<%= link_to 'Back', coupons_path, :class=>"form_buttons",:style=>"text-decoration:none;padding:6px"  %>
+</div>

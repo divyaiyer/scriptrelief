@@ -1,0 +1,264 @@
+<%= stylesheet_link_tag "colorbox.css" , :media=> "screen" %>
+<%= javascript_include_tag "jquery.colorbox.js" , "js/jquery-ui-1.8.1.custom.min.js"  %>
+<style>
+  .align_center{
+    text-align: center;
+}
+a:hover{
+  text-decoration: none;
+}
+</style>
+<img id="displayBox" src="/assets/loading.gif" style="display:none" />
+<% if !@coupons.blank? %>
+ <div style="width:100%">
+  <% if !@show_msg.blank? %>
+    <% if !@search.blank? %>
+    <div style="float: left;width: 70%;margin-left:25px;font-weight: bold;">Your search for "<%= @search %>" returned <%= pluralize(@coupons.total_entries, 'result') %></div>
+    <% end %>
+  <% end %>
+   <% if @coupons.total_pages != 1 %>
+    <%= render :partial => "pagination_top", :locals => {:coupons => @coupons,:search => @search.to_s} %>
+  <% end %>
+</div> 
+  <div class="coupon_list" id="coupon_list_contents">
+    <!-- coupon -->
+     <% if !@coupons.blank? %>
+         <% @coupons.each do |coupon| %>
+          <a href="<%=coupon_fulfillment_option_path(coupon)%>" style="cursor:pointer" class="fancybox">
+           <div class="coupon">
+            <span class="title">Save up to <%= coupon.savings %></span> ON YOUR NEXT<br /> PRESCRIPTION OF <span class="color" title="<%=coupon.name%>"><%= coupon.name[0..16] %></span>
+            <div class="link">
+                <%= image_tag "/assets/clip_your_discount.jpg",:style=>"margin-left:130px" %>
+            </div>
+            <span class="discount_label"><%= coupon.savings %></span>
+            </div>
+           </a>
+        <% end %>
+        <% end %>
+    <!-- / coupon -->
+  </div>
+  <% if @coupons.total_pages != 1 %>
+      <%= render :partial => "pagination", :locals => {:coupons => @coupons,:search => @search.to_s} %>
+  <% end %>
+  <% if @coupons.total_pages == 1 %>
+      <% if !@coupon_content.blank? %>
+        <div style="height: 20px; padding: 13px 0px 0px 18px; float: left;"></div>
+        <br/>
+        <hr style="width: 620px; float: left; margin: 30px 0px 10px 5px;position: relative;"/>
+        <div  style="width: 92%; padding: 0 0 0 25px;">
+          <div style="font-size: 15px; font-weight: bold; float: left; width: 100%;">
+              <table>
+                <tr>
+                  <td style="width:4%"><%= image_tag("/assets/right_arrow.jpg" , :id => "right_arrow", :style => "cursor:pointer") %><%= link_to image_tag("/assets/down_arrow.jpg"),"#coupon_content", :style=>"display:none", :id=>"down_arrow" %></td>
+                  <td style="width:70%">More Information: <%= @coupon_content.name if @coupon_content && @coupon_content.name%></td>
+                </tr>
+              </table>
+          </div>
+          <div style="text-align: right; height: auto; display: none; float: left; margin-top: -75px; margin-left: 400px;" id="print_pdf">
+            <%= link_to "Print Information", "#", :style=> "color:grey;text-decoration:underline", :onClick=>"printdiv('coupon_content', '#{@coupon_content.name}');" %>&nbsp;&nbsp;&nbsp;
+            <%= link_to "Download PDF", "/coupons/pdf_download?file=#{@coupon_content.id}_#{@coupon_content.monoid}.pdf", :target=> "_blank",:style=> "color:grey;text-decoration:underline" %>
+          </div><br/>
+          <div id="coupon_content" style="display:none;font-family: arial; overflow: scroll;overflow-x:hidden; height: 500px;float:left;">
+            <div>
+              Important information Read this medicine information sheet carefully each time you get this medicine filled.
+            </div>
+            <br/><br/>
+            <div>
+              Issue Date: <%= @coupon_content.issue_date.to_i if @coupon_content &&  @coupon_content.issue_date%>
+              <br/>
+              Pronunciation: <%= @coupon_content.pronunciation if @coupon_content &&  @coupon_content.pronunciation %>
+              <br/>
+              Brand Name: <%= @coupon_content.brand_name if @coupon_content && @coupon_content.brand_name %>
+            </div>
+            <div>
+              Warnings: <br/><%= @coupon_content.warnbox if @coupon_content && @coupon_content.warnbox %>
+            </div>
+            <br/><br/>
+              <span style="font-weight:bold;">This medicine is used for: </span> <br/> <%= @coupon_content.usage if @coupon_content &&  @coupon_content.usage %>
+                    <br/><br/>
+              <span style="font-weight:bold;">Do NOT use this medicine if: </span> <br/>
+              <% contras = Array.new%>
+              <% @coupon_content.contras.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% contras <<  h(type)%>
+              <% end %>
+              <%contras.delete("\n")%>
+              <%contras.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+              <br/><br/>
+              <span style="font-weight:bold;">Before using this medicine: </span> <br/>
+              <% precua = Array.new%>
+              <% @coupon_content.precautions.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% precua <<  h(type)%>
+              <% end %>
+              <%precua.delete("\n")%>
+              <%precua.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+              <br/><br/>
+              <span style="font-weight:bold;">How to use this medicine: </span> <br/>
+              <% pat = Array.new%>
+              <% @coupon_content.patinfo.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% pat <<  h(type)%>
+              <% end %>
+              <%pat.delete("\n")%>
+              <%pat.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+              <br/><br/>
+              <span style="font-weight:bold;">Important safety information about this medicine: </span> <br/>
+              <% warn = Array.new%>
+              <% @coupon_content.warnings.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% warn <<  h(type)%>
+              <% end %>
+              <%warn.delete("\n")%>
+              <%warn.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+              <br/><br/>
+              <span style="font-weight:bold;">Possible side effects of this medicine: </span> <br/>
+              <% adr = Array.new%>
+              <% @coupon_content.adrs.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% adr <<  h(type)%>
+              <% end %>
+              <%adr.delete("\n")%>
+              <%adr.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+                <br/><br/>
+              <span style="font-weight:bold;">If OVERDOSE is suspected: </span> <br/>
+              <%= @coupon_content.overdosage %>
+              <br/><br/>
+              <span style="font-weight:bold;">Proper storage of this medicine: </span> <br/>
+              <%= @coupon_content.storage %>
+              <br/><br/>
+              <span style="font-weight:bold;">General information: </span> <br/>
+              <% info = Array.new%>
+              <% @coupon_content.geninfo.gsub('---','').gsub('!','').gsub('\'','').split("- ").each do |type| %>
+                <% info <<  h(type)%>
+              <% end %>
+              <%info.delete("\n")%>
+              <%info.each do |c|%>
+                <%= c %><br/>
+              <% end %>
+          </div>
+        </div>
+     <% end %>
+ <% end %>
+<% else %>
+      <!-- thnk_you -->
+      <div class="thanks">
+        <h2>We can't seem to locate the prescription name you've enter above.
+            For more savings, please enter your name and address to receive a free pharmacy discount card.</h2>
+        <div class="null_thanks_form">
+          <div class="submit_box">
+            <form action="/transferred_data" method="post" id="thank_you_form">
+              <ul>
+                <li><label>Name*</label> <input name="transferred_datum[firstname]" id="name" type="text" value="" class="validate[required]" /></li>
+                <li><label>Address1*</label><input name="transferred_datum[address1]" id="address1" type="text" value="" class="validate[required]" /></li>
+                <li><label>Address2</label> <input name="transferred_datum[address2]" id="address2" type="text" value="" /></li>
+                <li><label>City*</label><input name="transferred_datum[city]" id="city" type="text" value="" class="validate[required]" /></li>
+                <li>
+                  <label>State*</label>
+                  <select name="transferred_datum[state]" id="state" style="width:210px;" class="validate[required]">
+                    <option value="">Please select a state</option>
+                      <% $states.each do |k,v| %>
+                        <option value="<%=k%>"><%=v%></option>
+                      <% end %>
+                  </select>
+                </li>
+                <li><label>Zip code*</label><input name="transferred_datum[zip]" id="zip_code" type="text" value="" class="validate[required]" /></li>
+                <li>
+                  <label>E-mail*</label> <input name="transferred_datum[email]" id="e-mail" type="text" value="" class="validate[required]" />
+                  <input type="hidden" name="transferred_datum[groupno]" value="<%=$GRP%>" />
+                  <input type="hidden" name="transferred_datum[remote_ip]" value="<%=request.env['REMOTE_ADDR']%>" />
+                  <input type="hidden" name="transferred_datum[path]" value="<%=request.url%>" />
+                  <input type="hidden" name="transferred_datum[url]" value="<%=request.referer%>" />
+      	          <input type="hidden" name="transferred_datum[current_prescription]" value="<%=@search if @search%>" />
+      		</li>
+                <li><input name="thanks" type="submit" value="" class="submit" /></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+<% end %>
+<script type="text/javascript">
+   $(document).ready(function() {
+        if (!$.fn.colorbox) return;
+        $(".fancybox").colorbox({
+          "iframe": true,
+          "fastIframe": false,
+          "innerWidth": 510,
+          "innerHeight": 674,
+          "opacity": 0.8,
+          "scrolling": false,
+          "onComplete": function() {
+            var iframe = $("iframe.cboxIframe"),
+            body = iframe.contents().find("body"),
+            floatStyle = body.css("float");
+            body.css("float", "left");
+            body.css("float", floatStyle);
+          }
+        });
+  });
+
+  $(document).ready(function() {
+      ajaxifyPagination();
+
+      $("#right_arrow").click(function(){
+        if($("#coupon_content").css("display","none")){
+          $("#coupon_content").css("display","block");
+          $("#right_arrow").css("display","none");
+          $("#down_arrow").css("display","block");
+          $("#print_pdf").css("display","block");
+        }
+      });
+      $("#down_arrow").click(function(){
+        if($("#coupon_content").css("display","block")){
+          $("#coupon_content").css("display","none");
+          $("#down_arrow").css("display","none");
+          $("#right_arrow").css("display","block");
+          $("#print_pdf").css("display","none");
+        }
+      });
+  });
+
+  function ajaxifyPagination() {
+      $(".pagination a").click(function() {
+          obj = $(this).html();
+          $.ajax({
+            type: "GET",
+            url: $(this).attr("href"),
+            data: {search :"<%= @search if @search %>"},
+            dataType: "script",
+
+            success: function(data){
+
+            $("#loading_page").css("display", "none");
+               $("#coupons_ajax_list").html(data);
+            }
+          });
+          return false;
+      });
+  }
+  function printdiv(printpage,coupon_name)
+  {
+    var DocumentContainer = document.getElementById(printpage);
+    var html = '<html><head>'+
+	               '</head><body style="background:#ffffff;">'+
+                       'More Information : '+ coupon_name
+                       +
+	               DocumentContainer.innerHTML+
+	               '</body></html>';
+    var WindowObject = window.open("", "PrintWindow","width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+    WindowObject.document.writeln(html);
+    WindowObject.document.close();
+    WindowObject.focus();
+    WindowObject.print();
+    WindowObject.close();
+    document.body.innerHTML = headstr+newstr+footstr;
+    window.print();
+    return false;
+  }
+</script>

@@ -1,0 +1,98 @@
+<%= javascript_include_tag "js/jquery_1_4.js" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+<link rel="icon" href="/assets/viewer.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+<style>
+table{
+    margin-left: 15px;
+    padding: 20px;
+}
+table td{
+    text-align: center;
+}
+.left_align{
+  text-align: left
+}
+.title{
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.sub_title{
+  font-family: arial;
+  font-weight: bold;
+  font-size: 14px;
+}
+#fulfill_content{
+  margin-left: -24px; background-color: white; width: 107%; height: 550px; margin-top: 3px;
+}
+.border_none{
+  border: 0;
+}
+</style>
+</head>
+<body style="background-color: #8dacd8;padding-left:15px;">
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+  <div style="padding-top: 30px;text-align: right;">
+    <%= image_tag "/assets/fulfillment/logo.png" %>
+  </div>
+  <div id="fulfill_content">
+    <table  height="100%" width="100%" cellpadding="3" align="center" callspacing="3">
+      <tr>
+        <td colspan="2" class="title">How would you like your coupon?</td>
+      </tr>
+      <tr>
+        <td class="left_align">
+          <%=link_to image_tag("/assets/fulfillment/print.png", :class=>"border_none") , "#",:onclick=>"parent.$.colorbox.close();newWindow = window.open('#{print_coupon_printable_discount_path(@coupon)}','couponPrint','height=900, width=710,menubar=no,scrollbars=no,top=100'); newWindow.focus(); "%><br/><span class="sub_title">Print coupons at home</span>
+        </td>
+        <td class="left_align"><%= link_to image_tag("/assets/fulfillment/printer.png", :class=>"border_none"), "#",:onclick=>"parent.$.colorbox.close();newWindow = window.open('#{print_coupon_printable_discount_path(@coupon)}','couponPrint','height=900, width=710,menubar=no,scrollbars=no,top=100'); newWindow.focus();" %></td>
+      </tr>
+      <tr>
+        <td class="left_align">
+          <%= link_to image_tag("/assets/fulfillment/sms.png", :class=>"border_none"), sms_coupon_printable_discount_path(@coupon), :class=>"fancybox"%><br/><span class="sub_title">Send coupons to your phone</span>
+        </td>
+        <td class="left_align"><%= link_to image_tag("/assets/fulfillment/mobile.png", :class=>"border_none"), sms_coupon_printable_discount_path(@coupon), :class=>"fancybox" %></td>
+      </tr>      
+      <tr>
+        <td class="left_align">
+          <%= link_to image_tag("/assets/fulfillment/email.png", :class=>"border_none"), email_coupon_printable_discount_path(@coupon), :class=>"fancybox"%><br/><span class="sub_title">Receive coupons by email</span>
+        </td>
+        <td class="left_align"><%= link_to image_tag("/assets/fulfillment/mail.png", :class=>"border_none"), email_coupon_printable_discount_path(@coupon), :class=>"fancybox" %></td>
+      </tr>     
+    </table>
+  </div>
+</body>
+  <script type="text/javascript">
+	        $(document).ready(function() {
+                   if (!$.fn.colorbox) return;
+                      $(".fancybox").colorbox({
+                      "iframe": true,
+                      "fastIframe": false,
+                      "innerWidth": 510,
+                      "innerHeight": 694,
+                      "opacity": 0.8,
+                      "scrolling": false,
+                      "onComplete": function() {
+                        var iframe = $("iframe.cboxIframe"),
+                        body = iframe.contents().find("body"),
+                        floatStyle = body.css("float");
+                        body.css("float", "left");
+                        $.colorbox.resize({ "innerHeight": iframe.contents().height() })
+                        body.css("float", floatStyle);
+                       }
+                      });
+                });
+
+
+ </script>
+</html>

@@ -1,0 +1,25 @@
+<div style="height:22px;padding:2px 0 0 0;margin: 10px 25px 0 25px;color: green;" align="middle">
+    <div style="width: 50%; text-align: left; float: left;">
+      <%if !@coupons.blank?%>
+       <div style="text-align: left; float: left;">
+        <% page = params[:page] ? params[:page] : "1" %>
+        <% if request.path.include?("/esp") %>
+          Página: <%=page %> de <%=@coupons.total_pages%>
+        <% else %>
+          Page: <%=page %> of <%=@coupons.total_pages%>
+        <% end %>
+       </div>
+      <%end%>
+      <div style="text-align: left; float: left;">
+        <%= image_tag "/assets/loader.gif",:style=>"display:none;height: 25px;",:id=>"loading_page" %>
+      </div>
+    </div>   
+    <div style="width: 50%; text-align: right; float: left;">
+      <% if request.path.include?("/esp") %>
+        <%= will_paginate @coupons,:params => {:scope => "esp"},:link_separator => "|", :page_links => false  if @coupons%>
+      <% else %>
+        <%= will_paginate @coupons,:link_separator => "|", :page_links => false  if @coupons%>
+      <% end %>
+
+    </div>
+</div>

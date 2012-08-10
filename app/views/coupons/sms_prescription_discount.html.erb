@@ -1,0 +1,219 @@
+<%= javascript_include_tag "js/jquery_1_4.js" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Helprx.info | <%= @medicine %></title>
+<META NAME="keywords" CONTENT="prescriptions, drugs, rx, discounts, pharmacy, save, cheap">
+<META NAME="description" CONTENT="Helprx is a directory of over 15,000 discounts that can save you money instantly at the pharmacy.">
+<META HTTP-EQUIV="Content-Language" CONTENT="EN">
+<META NAME="copyright" CONTENT="2009 Helprx.info All rights reserved.">
+<META NAME="robots" CONTENT="FOLLOW,INDEX">
+<link rel="icon" href="/favicon.ico" />
+<%= render :partial => 'layouts/google_analytics'%>
+<style>
+  #coupon_bin_pcn{
+    padding-top: 26px
+  }
+</style>
+<!--[if IE]>
+<style>
+  #coupon_bin_pcn{
+    padding-top: 22px
+  }
+</style>
+ <![endif]-->
+</head>
+<body style="background-color: #8dacd8;padding-left:15px;">
+  <script src="//cdn.optimizely.com/js/31931623.js"></script>
+   <!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: HelpRx SMS Discount Display (Standard)
+URL of the webpage where the tag is expected to be placed: http://www.helprx.info/sms_discount
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+Creation Date: 05/23/2012
+-->
+<script type="text/javascript">
+var axel = Math.random() + "";
+var a = axel * 10000000000000;
+document.write('<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=helpr182;cat=helpr676;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+<iframe src="https://fls.doubleclick.net/activityi;src=3488012;type=helpr182;cat=helpr676;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+<table cellpadding="0" cellspacing="0" style="background-color:white;padding-top:10px;border: 1px solid #000;">
+<tr><td><img src="/assets/coupon_images/newdiscount_01.gif" width="456" height="170" alt="" style="margin-top:10px"/></td></tr>
+
+<tr>
+
+ <td align="left" valign="top">
+  <!--[if IE]>
+    <table cellpadding="0" cellspacing="0" width="456" style="margin-top:-4px;">
+  <![endif]-->
+  <table cellpadding="0" cellspacing="0" width="456">
+
+   <tr>
+
+		<td colspan="3" rowspan="2"><img src="/assets/coupon_images/newdiscount_02.gif" width="144" height="121" alt=""></td>
+
+		<td colspan="3" width="178" height="98" align="center"><span style="font-family:Arial, sans-serif; font-weight:bold; font-size: 80px; line-height:80px; color: #3f7226"><%=@discount%></td>
+
+		<td colspan="3" rowspan="2"><img src="/assets/coupon_images/newdiscount_04.gif" width="134" height="121" alt=""></td>
+
+	</tr>
+
+	<tr>
+
+		<td colspan="3"><img src="/assets/coupon_images/newdiscount_05.gif" width="178" height="23" alt=""></td>
+
+	</tr>
+
+  </table>
+
+ </td>
+
+</tr>
+
+ <tr>
+
+  <td align="left" valign="top">
+
+   <table cellpadding="0" cellspacing="0" width="100%">
+
+    <tr>
+
+     <td width="35"><img src="/assets/coupon_images/newdiscount_06_1.gif" alt="" /></td>
+
+     <td align="left" valign="top">
+
+      <table cellpadding="0" cellspacing="0" width="412">
+
+      <tr><td height="20" colspan="3"></td></tr>
+
+       <tr><td align="center" colspan="3"><span style="font-family:Verdana, Geneva, sans-serif; font-weight:bold; font-size: 32px; line-height:32px"><%=@medicine[0..18]%></span></td></tr>
+
+       <tr><td height="5" colspan="3"></td></tr>
+
+       <tr>
+
+        <td align="left" valign="top">
+
+         <table cellpadding="0" cellspacing="0" width="100%">
+
+          <tr>
+
+           <td align="left" valign="top" style="padding-top:15px;padding-left:20px;">
+            <%= image_tag("/assets/coupon_images/print_coupon_base.jpg",:style=>" margin-left: -10px;position: absolute; z-index: 3;") %>
+             <div id="coupon_bin_pcn" style=" position: absolute; z-index: 4;padding-left:60px;">
+               <table cellpadding="1" cellspacing="0" width="168">
+
+             <tbody>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? $BIN : @api_response["BIN"]%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? nil : @api_response["GroupNumber"]%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? $PCN : @api_response["PCN"].upcase%></span></td>
+             </tr>
+             <tr>
+             <td></td>
+             <td><span style="font-family:Arial, Helvetica, sans-serif; font-size:14px;font-weight:bold;"><%=@api_response.blank? ? ("HNA"+@usernumber.id.to_s.rjust(6,"0")) : @api_response["MemberNumber"] %></span></td>
+             </tr>
+
+            </tbody></table>
+             </div>
+            
+
+           </td>
+
+          </tr>
+
+         </table>
+
+        </td>
+
+        <td width="10"></td>
+
+        <td valign="top" style="padding-top:25px;padding-left:170px">
+
+         <table cellpadding="0" cellspacing="0" width="100%">
+
+          <tr><td style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">PRESENT THIS AT TIME OF PURCHASE</td></tr>
+
+          <tr><td height="5"></td></tr>
+
+          <tr><td align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">THIS DISCOUNT DOES NOT WORK IN CONJUNCTION WITH OTHER PRESCRIPTION DISCOUNTS</td></tr>
+
+          <tr><td height="5"></td></tr>
+
+          <tr><td style="font-family:Arial, Helvetica, sans-serif;font-size:9px;">QUESTIONS : <%=$PHONE_NO%><br /> THIS DISCOUNT IS NOT INSURANCE</td></tr>
+
+         </table>
+
+        </td>
+
+       </tr>
+
+       <tr>
+
+        <td colspan="3" style="padding-top:25px;padding-left:3px;font-family:Arial, Helvetica, sans-serif;font-size:9px;" valign="top" align="left">
+
+         <div style="width:371px;text-align:left;">
+
+		This discount is offered through the Healthcare Alliance, and does not imply the 
+
+		endorsement of the pharmaceutical manufacturer.
+
+
+         </div>
+
+        </td>
+
+       </tr>
+
+       <tr><td colspan="3" align="center" style="padding-top:6px" ><img src="/assets/coupon_images/print_coupon_base.png" alt="" /></td></tr>
+
+      </table>
+
+     </td>
+
+     <td width="10" valign="top"><img src="/assets/coupon_images/newdiscount_08_1.gif" alt="" /></td>
+
+    </tr>
+
+   </table>
+
+  </td>
+
+ </tr>
+</table>
+<div style="background-color:#8dacd8;vertical-align:middle;border: .1em dotted #8dacd8;">
+  <% if request.path.include?("/fulfill") %>
+   <form id="sendEmailForm" method="post" action="<%= send_coupon_fulfill_sms_path%>">
+   <% else %>
+       <form id="sendEmailForm" method="post" action="<%= send_coupon_sms_path%>">
+   <% end %>
+        <div class="form_item" align="top" style="padding-top:10px;height:50px;">
+              <span style="color:#FFFFFF;font-family:Din, Verdana, Geneva, sans-serif;"><b>Enter Your Cell Phone Number:</b></span><br/>
+              <span><input type="text" id="number" name="number" style=" vertical-align:top; margin-top: 6px;width:300px;height:32px;"/>
+                    <input type="hidden" name="coupon_id" value="<%= @coupon.id%>" /> 
+					<input type="hidden" name="userinfo_id" value="<%= @usernumber.id if !@usernumber.blank?%>" />
+                    <input type="image" src="/assets/buttons/sms_dis_btn.png" alt="submit" style="height: 37px; margin-top: 4px;"/>
+              </span>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+    $("#number").focus();
+  })
+</script>
+</html>
